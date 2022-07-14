@@ -1,10 +1,8 @@
 package com.zlt.healthypass.dao;
 
+import com.zlt.healthypass.bean.Location;
 import com.zlt.healthypass.bean.UserInfo;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface IUserInfoDao {
@@ -18,4 +16,8 @@ public interface IUserInfoDao {
 
     @Select("select health_status from users where uname=#{nickname}")
     int selectHealthyStatusByNickname(String nickname);
+
+    @Insert("insert into location_code(user_id,location_name,create_time) "+
+            "values(#{location.userId},#{location.locationName},#{location.date})")
+    int insertLocationCode(Location location);
 }

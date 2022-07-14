@@ -1,5 +1,6 @@
 package com.zlt.healthypass.service.Impl;
 
+import com.zlt.healthypass.bean.Location;
 import com.zlt.healthypass.bean.UserInfo;
 import com.zlt.healthypass.bean.Info;
 import com.zlt.healthypass.dao.IUserInfoDao;
@@ -13,7 +14,6 @@ public class UserInfoService implements IUserInfoService {
     @Autowired
     private IUserInfoDao iuid;
 
-
     @Override
     public UserInfo selectUserInfoByNickname(String nickname) {
         UserInfo userInfo = iuid.selectUserInfoByNickname(nickname);
@@ -25,5 +25,11 @@ public class UserInfoService implements IUserInfoService {
         int i = iuid.selectHealthyStatusByNickname(nickname);
         Info info = new Info(200, "成功了", i);
         return info;
+    }
+
+    @Override
+    public int insertLocationCode(Location location) {
+        int i = iuid.insertLocationCode(location);
+        return i;
     }
 }
